@@ -99,7 +99,7 @@ data class MahasiswaEvent(
 )
 
 //Menyimpan input form ke dalam entity
-fun Mahasiswa.toMhsModel():Mahasiswa =Mahasiswa(
+fun MahasiswaEvent.toMhsModel():Mahasiswa =Mahasiswa(
     nim = nim,
     nama = nama,
     jenis_kelamin = jenis_kelamin,
