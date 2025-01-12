@@ -49,14 +49,15 @@ private val firestore: FirebaseFirestore
         }
     }
 
-    override suspend fun deleteMahasiswa(mahasiswa: Mahasiswa) {
+    override suspend fun deleteMahasiswa (mahasiswa: Mahasiswa)//nim: String
+    {
         try {
             firestore.collection("Mahasiswa")
                 .document(mahasiswa.nim)
                 .delete()
                 .await()
         }catch (e:Exception){
-            throw Exception("Gagal menghapus data mahasiswa: ${e.message} ")
+            throw Exception ("Gagal menghapus data mahasiswa: ${e.message}")
         }
     }
 
