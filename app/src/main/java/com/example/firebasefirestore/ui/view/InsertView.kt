@@ -50,7 +50,7 @@ fun InsertMhsView(
     modifier: Modifier = Modifier,
     viewModel: InsertViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ){
-    val uiState = viewModel.uiEvent
+    val uiState = viewModel.uiState
     val uiEvent = viewModel.uiEvent
     val snackbarHostState = remember{ SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
@@ -122,7 +122,7 @@ fun InsertBodyMhs(
     onValueChange: (MahasiswaEvent) -> Unit,
     uiState: InsertUiState,
     onClick: () -> Unit,
-    homeUiState: HomeUiState
+    homeUiState: FormState
 ){
     Column (
         modifier = modifier.fillMaxWidth(),
