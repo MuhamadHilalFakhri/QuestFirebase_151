@@ -32,7 +32,7 @@ private val firestore: FirebaseFirestore
 
     override suspend fun insertMahasiswa(mahasiswa: Mahasiswa) {
        try{
-           firestore.collection("Mahasiswa").add(mahasiswa).await()
+           firestore.collection("Mahasiswa").document(mahasiswa.nim).set(mahasiswa).await()
        }catch (e:Exception){
            throw Exception("Gagal menambahkan data mahasiswa: ${e.message} ")
        }
@@ -49,17 +49,17 @@ private val firestore: FirebaseFirestore
         }
     }
 
-    override suspend fun deleteMahasiswa (mahasiswa: Mahasiswa)//nim: String
-    {
+    override suspend fun deleteMahasiswa(mahasiswa: Mahasiswa) {
         try {
             firestore.collection("Mahasiswa")
                 .document(mahasiswa.nim)
                 .delete()
                 .await()
-        }catch (e:Exception){
-            throw Exception ("Gagal menghapus data mahasiswa: ${e.message}")
+        } catch (e: Exception) {
+            throw Exception("Gagal menghapus data mahasiswa: ${e.message}")
         }
     }
+
 
     override suspend fun getMahasiswaByNim(nim: String): Flow<Mahasiswa> = callbackFlow {
         val mhsDocument = firestore.collection("Mahasiswa")
