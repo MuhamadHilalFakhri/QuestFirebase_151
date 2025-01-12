@@ -3,6 +3,7 @@ package com.example.firebasefirestore.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import com.example.firebasefirestore.model.Mahasiswa
 import com.example.firebasefirestore.repository.MahasiswaRepository
+import java.text.Normalizer.Form
 
 class InserViewModel(
     private val mhs: MahasiswaRepository
@@ -12,6 +13,12 @@ class InserViewModel(
 
 }
 
+sealed class FormState{
+    object Idle : FormState()
+    object Loading : FormState()
+    data class Success(val message: String) : FormState()
+    data class Error(val message: String) : FormState()
+}
 data class InsertUiState(
     val insertUiEvent: MahasiswaEvent = MahasiswaEvent(),
     val isEntryValid: FormErrorState = FormErrorState()
