@@ -1,5 +1,8 @@
 package com.example.firebasefirestore.ui.viewmodel
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.firebasefirestore.model.Mahasiswa
 import com.example.firebasefirestore.repository.MahasiswaRepository
@@ -9,7 +12,10 @@ class InserViewModel(
     private val mhs: MahasiswaRepository
 ): ViewModel(){
 
-
+    var uiEvent: InsertUiState by mutableStateOf(InsertUiState())
+        private set
+    var uiState: FormState by mutableStateOf(FormState.Idle)
+        private set
 
 }
 
