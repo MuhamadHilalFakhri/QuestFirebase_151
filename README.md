@@ -8,3 +8,7 @@
 
 --Hapus data
 ![image](https://github.com/user-attachments/assets/b55f567e-56c3-4ca1-a856-736891934e3f)
+
+
+![image](https://github.com/user-attachments/assets/fedebdf7-e439-4091-a8e8-e9439c22b061)
+![image](https://github.com/user-attachments/assets/18a2c47b-892f-4e66-b985-d60208cefb9d)
