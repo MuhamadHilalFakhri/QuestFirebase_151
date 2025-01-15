@@ -198,13 +198,12 @@ fun MhsCard(
                     style = MaterialTheme.typography.titleMedium
                 )
             }
-
             Text(
-                text = mahasiswa.kelas,
+                text = mahasiswa.alamat,
                 style = MaterialTheme.typography.titleMedium
             )
             Text(
-                text = mahasiswa.alamat,
+                text = mahasiswa.judul_skripsi,
                 style = MaterialTheme.typography.titleMedium
             )
         }

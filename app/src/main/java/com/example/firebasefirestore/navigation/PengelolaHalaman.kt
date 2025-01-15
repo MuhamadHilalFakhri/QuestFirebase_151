@@ -8,6 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.composable
+//import com.example.firebasefirestore.ui.view.DetailMhsView
 import com.example.firebasefirestore.ui.view.HomeScreen
 import com.example.firebasefirestore.ui.view.InsertMhsView
 
@@ -37,5 +38,23 @@ fun PengelolaHalaman(
                 }
             )
         }
+//        composable(DestinasiDetail.route) { backStackEntry ->
+//            // Mendapatkan NIM dari argument route
+//            val nim = backStackEntry.arguments?.getString(DestinasiDetail.route)
+//
+//            nim?.let {
+//                DetailMhsView(
+//                    nim = it, // Mengirimkan NIM ke DetailMhsView
+//                    navigateBack = {
+//                        // Aksi ketika tombol "Kembali" ditekan
+//                        navController.navigate(DestinasiHome.route) {
+//                            popUpTo(DestinasiHome.route) {
+//                                inclusive = true // Pop sampai ke DestinasiHome
+//                            }
+//                        }
+//                    },
+//
+//                )
+//            }
+        }
     }
-}

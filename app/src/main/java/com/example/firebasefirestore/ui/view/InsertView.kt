@@ -9,7 +9,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -54,7 +56,7 @@ fun InsertMhsView(
     val uiEvent = viewModel.uiEvent
     val snackbarHostState = remember{ SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
-
+    val scrollState = rememberScrollState()
 
     LaunchedEffect(uiState) {
         when (uiState){
@@ -99,6 +101,7 @@ fun InsertMhsView(
             .fillMaxSize()
             .padding(padding)
             .padding(16.dp)
+            .verticalScroll(scrollState)
         )
         {
             InsertBodyMhs(
@@ -163,6 +166,8 @@ fun FormMahasiswa(
 ) {
     val jenis_kelamin = listOf("Laki-laki", "Perempuan")
     val kelas = listOf("A", "B", "C", "D", "E")
+    val dosen1 = listOf("Akbar","Kevin","Arif")
+    val dosen2 = listOf("Tejo","Astra","Omen")
 
     Column(
         modifier = modifier.fillMaxWidth()
@@ -198,7 +203,6 @@ fun FormMahasiswa(
             color = Color.Red
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
         Text(text = "Jenis Kelamin")
         Row(
             modifier = Modifier.fillMaxWidth()
@@ -220,8 +224,52 @@ fun FormMahasiswa(
                 }
             }
         }
+
+        Text(text = "Dosen Pertama")
+        Row {
+            dosen1.forEach { dosen1 ->
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    RadioButton(
+                        selected = mahasiswaEvent.dosen1 == dosen1,
+                        onClick = {
+                            onValueChange(mahasiswaEvent.copy(dosen1 = dosen1))
+                        },
+                    )
+                    Text(text = dosen1)
+                }
+            }
+            Text(
+                text = errorState.dosen1 ?: "",
+                color = Color.Red
+            )
+        }
+
+        Text(text = "Dosen Kedua")
+        Row {
+            dosen2.forEach { dosen2 ->
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    RadioButton(
+                        selected = mahasiswaEvent.dosen2 == dosen2,
+                        onClick = {
+                            onValueChange(mahasiswaEvent.copy(dosen2 = dosen2))
+                        },
+                    )
+                    Text(text = dosen2)
+                }
+            }
+            Text(
+                text = errorState.dosen2 ?: "",
+                color = Color.Red
+            )
+        }
         Text(
-            text = errorState.jenis_kelamin ?: "",
+            text = errorState.dosen2 ?: "",
             color = Color.Red
         )
 
@@ -240,7 +288,6 @@ fun FormMahasiswa(
             color = Color.Red
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
         Text(text = "Kelas")
         Row {
             kelas.forEach { kelas ->
@@ -279,4 +326,39 @@ fun FormMahasiswa(
         text = errorState.angkatan ?: "",
         color = Color.Red
     )
+
+    OutlinedTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = mahasiswaEvent.judul_skripsi,
+        onValueChange = {
+            onValueChange(mahasiswaEvent.copy(judul_skripsi = it))
+        },
+        label = { Text("Judul skrispi") },
+        isError = errorState.judul_skripsi != null,
+        placeholder = { Text("Masukkan judul skripsi") },
+    )
+    Text(
+        text = errorState.judul_skripsi ?: "",
+        color = Color.Red
+    )
+///
+
+
+
+//    Spacer(modifier = Modifier.height(16.dp))
+//
+//    OutlinedTextField(
+//        modifier = Modifier.fillMaxWidth(),
+//        value = mahasiswaEvent.dosen2,
+//        onValueChange = {
+//            onValueChange(mahasiswaEvent.copy(dosen2 = it))
+//        },
+//        label = { Text("Dosen") },
+//        isError = errorState.dosen2 != null,
+//        placeholder = { Text("Masukkan dosen pertama") },
+//    )
+//    Text(
+//        text = errorState.dosen2 ?: "",
+//        color = Color.Red
+//    )
 }
